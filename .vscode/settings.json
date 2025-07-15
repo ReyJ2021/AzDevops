@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e5187db1-f787-457e-9a50-4b69ed7433e4/resourceGroups/Devopsrg/providers/Microsoft.Web/sites/linuxapprey25",
+    "appService.deploySubpath": "cosmos-dotnet-core-todo-app\\src"
+}
