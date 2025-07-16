@@ -29,7 +29,7 @@ resource "azurerm_service_plan" "sp" {
   resource_group_name = azurerm_resource_group.rgname.name
   location            = azurerm_resource_group.rgname.location
   os_type             = "Linux"
-  sku_name            = "P1v2"
+  sku_name            = "F1"
 }
 
 resource "azurerm_linux_web_app" "linuxapp" {
@@ -42,7 +42,10 @@ resource "azurerm_linux_web_app" "linuxapp" {
     application_stack {
       dotnet_version = "8.0"
     }
+    always_on = false
   }
+  webdeploy_publish_basic_authentication_enabled = true
+  identity {type = "SystemAssigned"}
 }
 
 resource "azurerm_cosmosdb_account" "example" {
@@ -62,6 +65,8 @@ resource "azurerm_cosmosdb_account" "example" {
     failover_priority = 0
     location = "westus2"
   }
+
+  identity {type = "SystemAssigned"}
   
 }
 
