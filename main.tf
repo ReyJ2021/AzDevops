@@ -15,7 +15,6 @@ required_providers {
 }
 
 provider "azurerm" {
-  subscription_id = "e5187db1-f787-457e-9a50-4b69ed7433e4"
   features {}
 }
 
