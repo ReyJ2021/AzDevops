@@ -1,5 +1,5 @@
 terraform {
-    required_version = "1.12.2"
+    required_version = "1.13.1"
     backend "azurerm" {
       resource_group_name = "WestEuropa-rg"
       storage_account_name = "projektdevops"
