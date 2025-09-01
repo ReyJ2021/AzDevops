@@ -32,7 +32,7 @@ jobs:
       # Runs a single command using the runners shell
 
       - name: Setup Terraform 
-        uses: hashicorp/setup-terraform@v4
+        uses: hashicorp/setup-terraform@v3
         
       - name: Terraform init
         run: terraform init
