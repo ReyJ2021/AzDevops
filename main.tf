@@ -40,7 +40,7 @@ resource "azurerm_linux_web_app" "linuxapp" {
 
   site_config {
     application_stack {
-      dotnet_version = "8.0"
+      dotnet_version = "3.1"
     }
     always_on = false
   }
