@@ -74,6 +74,7 @@ resource "azurerm_cosmosdb_account" "example" {
 #   name = azurerm_cosmosdb_account.example.name
 #   resource_group_name = azurerm_resource_group.rgname.name
 # }
+# run
 
 resource "azurerm_cosmosdb_sql_database" "example" {
   name = "cosmos25rey"
