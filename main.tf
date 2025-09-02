@@ -1,12 +1,12 @@
 terraform {
-    required_version = "1.13.1"
-    backend "azurerm" {
-      resource_group_name = "WestEuropa-rg"
-      storage_account_name = "projektdevops"
-      container_name = "remotestate"
-      key = "dev.terraform.tfstate"
-    }
-required_providers {
+  required_version = "1.13.1"
+  backend "azurerm" {
+    resource_group_name  = "WestEuropa-rg"
+    storage_account_name = "projektdevops"
+    container_name       = "remotestate"
+    key                  = "dev.terraform.tfstate"
+  }
+  required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.0.0"
@@ -20,7 +20,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rgname" {
-  name = var.resource_group_name
+  name     = var.resource_group_name
   location = var.location
 }
 
@@ -45,15 +45,15 @@ resource "azurerm_linux_web_app" "linuxapp" {
     always_on = false
   }
   webdeploy_publish_basic_authentication_enabled = true
-  identity {type = "SystemAssigned"}
+  identity { type = "SystemAssigned" }
 }
 
 resource "azurerm_cosmosdb_account" "example" {
-  name = "tencosmos25"
-  location = "westus2"
+  name                = "tencosmos25"
+  location            = "westus2"
   resource_group_name = azurerm_resource_group.rgname.name
-  offer_type = "Standard"
-  kind = "GlobalDocumentDB"
+  offer_type          = "Standard"
+  kind                = "GlobalDocumentDB"
 
   consistency_policy {
     consistency_level       = "BoundedStaleness"
@@ -63,11 +63,11 @@ resource "azurerm_cosmosdb_account" "example" {
 
   geo_location {
     failover_priority = 0
-    location = "westus2"
+    location          = "westus2"
   }
 
-  identity {type = "SystemAssigned"}
-  
+  identity { type = "SystemAssigned" }
+
 }
 
 # data "azurerm_cosmosdb_account" "tendata" {
@@ -77,23 +77,23 @@ resource "azurerm_cosmosdb_account" "example" {
 # run
 
 resource "azurerm_cosmosdb_sql_database" "example" {
-  name = "cosmos25rey"
+  name                = "cosmos25rey"
   resource_group_name = azurerm_resource_group.rgname.name
-  account_name = azurerm_cosmosdb_account.example.name
+  account_name        = azurerm_cosmosdb_account.example.name
 }
 
 resource "azurerm_cosmosdb_sql_container" "container" {
-  name = "naszcontainer"
-  database_name = azurerm_cosmosdb_sql_database.example.name
-  resource_group_name = azurerm_resource_group.rgname.name
-  account_name = azurerm_cosmosdb_account.example.name
-  partition_key_paths = ["/id"]
+  name                  = "naszcontainer"
+  database_name         = azurerm_cosmosdb_sql_database.example.name
+  resource_group_name   = azurerm_resource_group.rgname.name
+  account_name          = azurerm_cosmosdb_account.example.name
+  partition_key_paths   = ["/id"]
   partition_key_version = "1"
-  throughput = 400
+  throughput            = 400
 
   # unique_key {
   #   paths = []
-  }
+}
 
 # next step is to deploy app code into to the linux web app
 # next step is to build a cosmos DB to host web app DBs
