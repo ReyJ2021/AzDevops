@@ -10,7 +10,7 @@ variable "location" {
   default = "West Europe"
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "Azure subscription ID"
-}
+//variable "subscription_id" {
+ // type        = string
+ // description = "Azure subscription ID"
+//}
