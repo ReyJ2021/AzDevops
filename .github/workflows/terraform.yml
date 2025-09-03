@@ -45,15 +45,28 @@ jobs:
         
       - name: Terraform Plan
         run: terraform plan -out=mojplan
+
+        
+      - name: Upload Terraform Plan
+        uses: actions/upload-artifact@v3
+        with:
+           name: terraform-plan
+           path: mojplan
+
         
   deploy:
     runs-on: ubuntu-latest
     needs: build
     
-    steps:
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/master'
-        run: terraform apply mojplan
+    steps: 
+    - name: Download Terraform Plan
+      uses: actions/download-artifact@v3
+      with:
+        name: terraform-plan
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/master'
+      run: terraform apply mojplan
 
         
   # - name: Run a one-line script
