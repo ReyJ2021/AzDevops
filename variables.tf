@@ -11,6 +11,6 @@ variable "location" {
 }
 
 variable "subscription_id" {
-    type        = string
-    description = "Azure subscription ID"
- }
+  type        = string
+  description = "Azure subscription ID"
+}
