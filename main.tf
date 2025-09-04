@@ -5,7 +5,7 @@ terraform {
     storage_account_name = "projektdevops"
     container_name       = "remotestate"
     key                  = "dev.terraform.tfstate"
-    use_azuread_auth = true
+    use_azuread_auth     = true
     # client_id = "value"
     # tenant_id = "value"
   }
