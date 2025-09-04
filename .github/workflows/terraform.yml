@@ -59,14 +59,22 @@ jobs:
     needs: build
     
     steps: 
-    - name: Download Terraform Plan
-      uses: actions/download-artifact@v4
-      with:
+
+     - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+
+     - name: Setup Terraform 
+       uses: hashicorp/setup-terraform@v3
+      
+     - name: Download Terraform Plan
+       uses: actions/download-artifact@v4
+       with:
         name: terraform-plan
 
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/master'
-      run: terraform apply mojplan
+     - name: Terraform Apply
+       if: github.ref == 'refs/heads/master'
+       run: terraform apply mojplan
 
         
   # - name: Run a one-line script
